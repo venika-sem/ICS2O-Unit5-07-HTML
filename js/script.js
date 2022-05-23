@@ -9,45 +9,28 @@
  * Check servie worker.
  */
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICS2O-Unit5-06-HTML/sw.js", {
-    scope: "/ICS2O-Unit5-06-HTML/",
+  navigator.serviceWorker.register("/ICS2O-Unit5-07-HTML/sw.js", {
+    scope: "/ICS2O-Unit5-07-HTML/",
   })
 }
 
 /**
- * This function does a multiplication loop.
+ * This function calculates using loop.
  */
-function multiplyBy() {
+function calculate() {
   // input
-  const firstInteger = parseInt(document.getElementById('first-integer').value)
-	const secondInteger = parseInt(document.getElementById('second-integer').value)
+  var userInput = document.getElementById("user-input").value
 
-  // process
-  var addedNumber = 0
+  // process and output
   var answer = 0
+  var userInputAsInt = parseInt(userInput)
   
-   if (firstInteger > 0 && secondInteger > 0) {
-    while (addedNumber < secondInteger) {
-      addedNumber = addedNumber + 1;
-      answer = answer + firstInteger;
+  if (userInputAsInt <= 0) {
+    document.getElementById("answer").innerHTML = "Please input a positive whole number!"
+  } else {
+    for (let counter = 1; counter <= userInputAsInt; counter++) {
+      answer += counter
     }
-  } else if (firstInteger < 0 && secondInteger < 0) {
-    while (addedNumber > secondInteger) {
-      addedNumber = addedNumber - 1;
-      answer = answer - firstInteger;
-    }
-  } else if (firstInteger > 0 && secondInteger < 0) {
-    while (addedNumber > secondInteger) {
-      addedNumber = addedNumber - 1;
-      answer = answer - firstInteger;
-    }
-  } else if (firstInteger < 0 && secondInteger > 0) {
-    while (addedNumber < secondInteger) {
-      addedNumber = addedNumber + 1;
-      answer = answer + firstInteger;
-    }
+    document.getElementById("answer").innerHTML = "The value is " + (answer)
   }
-
-  // output
-  document.getElementById('answer').innerHTML = firstInteger + " x " + addedNumber + " = " + answer;
 }
